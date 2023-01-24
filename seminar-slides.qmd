@@ -1,0 +1,20 @@
+---
+title: "Figures in {ggplot}"
+author: "An Bui"
+format: 
+  revealjs:
+    theme: simple
+    embed-resources: true
+editor: source
+---
+
+## Data visualization
+
+::: incremental
+1.  Communicate results
+2.  What audience?
+:::
+
+## Tools
+
+## An's soapbox on design
