@@ -3,18 +3,104 @@ title: "Figures in {ggplot}"
 author: "An Bui"
 format: 
   revealjs:
-    theme: simple
+    theme: [custom.scss]
     embed-resources: true
+    scrollable: true
 editor: source
 ---
 
-## Data visualization
+## Today
 
+-   General rules for data visualization\
+-   Design soapbox\
+-   Resources (not covered, just collected)\
+-   Playing around with code
+
+------------------------------------------------------------------------
+
+# General rules for data visualization
+
+## General rule #1: Convey the message
+
+::: columns
+::: {.column width="50%"}
 ::: incremental
-1.  Communicate results
-2.  What audience?
+-   Legends and labels\
+-   Legible text, symbols, etc.\
+-   Clearly visible data\
+-   Intuitive color scheme\
+-   Redundancy
+:::
 :::
 
-## Tools
+::: {.column width="50%"}
+::: {.absolute top="20%" right="0" width="566" height="290"}
+::: {style="text-align: center"}
+![](README-mass-flipper-1.png)
+:::
+:::
+:::
 
-## An's soapbox on design
+::: {.absolute top="78%" right="5%"}
+::: {style="font-size: 0.5em"}
+Source: palmerpenguins package
+:::
+:::
+:::
+
+## General rule #2: Minimize noise
+
+::: columns
+::: {.column width="50%"}
+::: incremental
+-   Use colors sparingly (color-blind friendly choices are great too)\
+-   Minimize crowding
+:::
+:::
+
+::: {.column width="50%"}
+::: {.absolute top="20%" right="0" width="566" height="290"}
+::: {style="text-align: center"}
+![](README-mass-flipper-1.png)
+:::
+:::
+:::
+
+::: {.absolute top="78%" right="5%"}
+::: {style="font-size: 0.5em"}
+Source: palmerpenguins package
+:::
+:::
+:::
+
+# Design soapbox
+
+## Design soapbox
+
+::: incremental
+-   Figures can't always be reused\
+-   Make your friends critique your figures\
+-   Always consider the audience!
+:::
+
+
+## Resources
+
+**General Data Visualization**\
+- [Fundamentals of Data Visualization, by Claus O. Wilke](https://serialmentor.com/dataviz/index.html)\
+- [R for Data Science (Ch. 3), by Garrett Grolemund & Hadley Wickham](https://r4ds.had.co.nz/data-visualisation.html)\
+- [A ggplot2 grammar guide, by Gina Reynolds](https://evamaerey.github.io/ggplot2_grammar_guide/about)\
+- [ggplot2 cheat sheet](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)\
+- [ggplot2: Elegant Graphics for Data Analysis, by Hadley Wickham](https://ggplot2-book.org/)
+
+**Plot themes/customization**\
+- [Modifying components of a theme](https://ggplot2.tidyverse.org/reference/theme.html)\
+- [Themes to Improve your ggplot Figures, by David Keyes](https://rfortherestofus.com/2019/08/themes-to-improve-your-ggplot-figures/)
+
+**Packages**\
+- [patchwork (for putting plots together)](https://patchwork.data-imaginist.com/)\
+- [cowplot (also for putting plots together)](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html)\
+- [ggtext package (improved text rendering support for ggplot2)](https://github.com/wilkelab/ggtext)
+
+**Other**\
+- [stat_summary() tutorial, by Christian Burkhart](https://ggplot2tutor.com/summary_statistics/summary_statistics/)
