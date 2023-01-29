@@ -16,8 +16,6 @@ editor: source
 -   Resources (not covered, just collected)\
 -   Playing around with code
 
-------------------------------------------------------------------------
-
 # General rules for data visualization
 
 ## General rule #1: Convey the message
@@ -80,9 +78,9 @@ Source: palmerpenguins package
 ::: incremental
 -   Figures can't always be reused\
 -   Make your friends critique your figures\
+-   Kill your darlings\
 -   Always consider the audience!
 :::
-
 
 ## Resources
 
@@ -104,3 +102,11 @@ Source: palmerpenguins package
 
 **Other**\
 - [stat_summary() tutorial, by Christian Burkhart](https://ggplot2tutor.com/summary_statistics/summary_statistics/)
+
+# On to the code!
+
+## Links
+
+- GitHub repo  
+- RMarkdown document  
+- Knitted HTML document  
