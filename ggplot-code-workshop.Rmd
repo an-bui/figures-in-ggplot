@@ -1,0 +1,76 @@
+---
+title: "Figure making in ggplot"
+output: html_document
+date: "2023-01-29"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# What we're doing today
+
+In the spirit of Emily Riederer's [ugliest ggplot ever](https://gist.github.com/emilyriederer/2bf4f67d7e198f8359b61706c82e42ee), we'll play around with `ggplot` code in order to learn how it works. The goal: make the _ugliest_ plot possible.  
+
+# Set up
+
+We'll load in our packages below:
+```{r message = FALSE, warning = FALSE}
+library(tidyverse)
+library(lterdatasampler)
+```
+
+Note: if you don't have the `lterdatasampler` package, you'll have to install it from the GitHub repo using the code below (copy, paste, and run in the console), _then_ load the library in:
+```{r eval = FALSE}
+remotes::install_github("lter/lterdatasampler")
+```
+
+Today, we'll use the [Plum Island fiddler crab data](https://lter.github.io/lterdatasampler/articles/pie_crab_vignette.html) from `lterdatasampler` to visualize relationships between latitude and crab size. Read the linked vignette to learn about Bergmann's rule!  
+
+The Plum Island LTER has a data set of crab sizes (column `size`) from Summer 2016 at 13 different marshes spanning 12 degrees latitude. A sample is below, but try `View(pie_crab)` in the console to see the whole data frame. 
+
+```{r}
+pie_crab %>% 
+  slice_sample(n = 5)
+```
+
+# `ggplot` grammar
+
+`ggplot` works in layers. The code to make a plot can vary, but always includes:  
+1. the `ggplot()` call: this tells R that you want to use the function `ggplot()` in `ggplot` to plot things.  
+2. `data` and `aesthetics` within that `ggplot()` call: tells `ggplot` to use a specific data frame any variables in that data frame that should be represented in the plot (for example, x- and y- axes, colors, shapes)  
+3. a `geom_()`: short for "geometry", `geom_()` calls tell `ggplot` what kind of plot you want to make. Try `?geom_` in the console to see the different options.  
+
+```{r}
+# step 1: call ggplot
+ggplot(
+  
+  # step 2: specify the data and the aesthetics
+  # plotting latitude on the x-axis and crab size on the y-axis
+  data = pie_crab, aes(x = latitude, y = size)) +
+  
+  # step 3: specify a geom - in this case, we're creating a scatter plot
+  geom_point()
+```
+
+Note that when you're adding on layers in `ggplot`, you'll use the `+` instead of the `%>%` operator. This is because `ggplot()` is the function call, but everything else you add on is a modifier of the `ggplot()` plotting function (instead of a new function doing something different).  
+
+So we've just made this plot. But how can we make it _worse_?  
+
+`ggplot()` takes aesthetics from the data frame, so I'm going to color the points by latitude and make the shapes represent site.
+```{r}
+ggplot(data = pie_crab, aes(x = latitude, y = size)) +
+  geom_point(aes(color = site))
+```
+
+
+
+
+
+
+
+
+
+
+
+
