@@ -1,7 +1,7 @@
 ---
 title: "Figure making in ggplot"
 output: html_document
-date: "2023-01-29"
+date: "13 February 2023"
 ---
 
 ```{r setup, include=FALSE}
@@ -16,11 +16,12 @@ In the spirit of Emily Riederer's [ugliest ggplot ever](https://gist.github.com/
 
 We'll load in our packages below:
 ```{r message = FALSE, warning = FALSE}
-library(tidyverse)
-library(lterdatasampler)
+library(tidyverse) # general tidying and visualization: ggplot is loaded by default if you use tidyverse
+library(lterdatasampler) # data we're using comes from this package
+library(lubridate) # working with dates
 ```
 
-Note: if you don't have the `lterdatasampler` package, you'll have to install it from the GitHub repo using the code below (copy, paste, and run in the console), _then_ load the library in:
+Note: if you don't have either the `lubridate` or `lterdatasampler` package, you'll have to install them before loading them in. `lubridate` is on CRAN, so you can do `install.packages("lubridate")`, but `lterdatasampler` has to be installed from the GitHub repo using the code below (copy, paste, and run in the console):
 ```{r eval = FALSE}
 remotes::install_github("lter/lterdatasampler")
 ```
@@ -33,6 +34,16 @@ The Plum Island LTER has a data set of crab sizes (column `size`) from Summer 20
 pie_crab %>% 
   slice_sample(n = 5)
 ```
+
+Just to make things a little more interesting, I'm going to split up the dates into years, months, and days and save that as a new data frame, `crab_data`.
+
+```{r}
+crab_data <- pie_crab %>% 
+  # extracting month from the date column using lubridate::month()
+  # also making this a factor (instead of numeric) using as.factor()
+  mutate(month = as.factor(month(date)))
+```
+
 
 # `ggplot` grammar
 
@@ -47,7 +58,7 @@ ggplot(
   
   # step 2: specify the data and the aesthetics
   # plotting latitude on the x-axis and crab size on the y-axis
-  data = pie_crab, aes(x = latitude, y = size)) +
+  data = crab_data, aes(x = latitude, y = size)) +
   
   # step 3: specify a geom - in this case, we're creating a scatter plot
   geom_point()
@@ -57,20 +68,104 @@ Note that when you're adding on layers in `ggplot`, you'll use the `+` instead o
 
 So we've just made this plot. But how can we make it _worse_?  
 
-`ggplot()` takes aesthetics from the data frame, so I'm going to color the points by latitude and make the shapes represent site.
+`ggplot()` takes aesthetics from the data frame, so I'm going to color the points by site and make the shapes represent month. I'm also going to make a jitter plot, which is a scatter plot with the points "jittered", or randomly shaken up so that it's easier to see the overlap (or be chaotic). I'm also going to facet the plot by month using `facet_wrap()`, which is a useful function when you're trying to see differences between variables in different panels (or you can use `facet_grid()`, which does essentially the same thing).
 ```{r}
-ggplot(data = pie_crab, aes(x = latitude, y = size)) +
-  geom_point(aes(color = site))
+ggplot(data = crab_data, aes(x = latitude, y = size)) +
+  # putting the aesthetics in here: color points by site, shape points by month
+  geom_jitter(aes(color = site, shape = month), 
+  # anything that doesn't have to do with variables (like point size or transparency) goes outside the aesthetics
+              size = 3, alpha = 0.6) +
+  # facet by month
+  facet_wrap(~ month)
 ```
 
+Wow! This plot is getting worse to look at. But we can do better.
 
+# Adjustments to `ggplot` defaults
 
+## Manual selections
+You can adjust the colors, shapes, axis limits, etc. using one of the `scale_` functions (try `?scale_` to see the many options).
 
+## Themes
+A lot of customization comes from `ggplot` themes. Theme elements deal with everything else in the plot that _doesn't_ have to do with the data (e.g. the plot background, grid, etc.). There are a lot of arguments that you can stack up in `theme()` (try `?theme()`) to see all of them, but they generally fall into a few categories: 1. axes, 2. legends, 3. panels, 4, plots, 5, strips. There are built-in themes in `ggplot` that can make your plot look pretty good right away, but playing around with theme elements yourself is a great way of getting the exact plot you want.  
 
+Additionally, every argument takes a function modifying the _elements_: 1. lines, 2. rectangles (more broadly, shapes), 3. text. See the help pages for these functions (e.g. `?element_text()`) to figure out what you can alter about each element - there's a lot!  
 
+## Annotations
+Annotations are useful when you want to point something out on a plot. The function is `annotate()`, which adds an annotation layer onto your plot.
 
+## Labels
+Lastly, you can adjust any text on labels using the `labs()` function.  
 
+Note: all the code in the theme below comes from Emily Riederer's gist, with some modifications!
 
+```{r fig.height = 8, fig.width = 10}
+ggplot(data = crab_data, aes(x = latitude, y = size)) +
+  geom_jitter(aes(color = site, shape = month), size = 3, alpha = 0.6) +
+  facet_wrap(~ month) +
+  
+  # scaling
+  # changing point colors + assigning each to a site
+  scale_color_manual(values = c("BC" = "#687f47", "CC" = "#268e86", "CT" = "#373f1f", "DB" = "#03010a", 
+                                "GTM" = "#447c49", "JC" = "#2e2747", "NB" = "#7f696a", "NIB" = "#777a76", 
+                                "PIE" = "#a87445", "RC" = "#aef23a", "SI" = "#e05357", "VCR" = "#087f0c", 
+                                "ZI" = "#010201")) +
+  # changing the point shapes
+  scale_shape_manual(values = c("7" = 21, "8" = 18)) +
+  # changing x and y axis limits and breaks
+  scale_x_continuous(limits = c(29, 45)) +
+  scale_y_continuous(n.breaks = 10) +
 
+  # modifying the plot theme
+  theme(
+    
+    # panel: anything having to do with the main area
+    panel.background = element_rect(fill = '#B5C7F4', color = '#F761F9', linewidth = 5),
+    panel.border = element_rect(fill = NA, color = "#87Bf18", linewidth = 2),
+    panel.grid.major.x = element_line(color = "#FF21E1", linetype = 6),
+    panel.grid.minor.x = element_line(color = "#2D65BF", linetype = 4),
+    panel.grid.minor.y = element_blank(),
+    
+    # plot: anything having to do with the area around the panel
+    plot.background = element_rect(fill = "#98FC6A"),
+    plot.title = element_text(size = 30, hjust = 0.25, family = "Helvetica"),
+    plot.subtitle = element_text(size = 20, hjust = 0.75, color = "#2A23A3", family = "Times New Roman"),
+    plot.caption = element_text(size = 10, angle = 25, family = "Comic Sans MS"),
+    plot.margin = unit(c(1, 4, 1, 3), "cm"), 
+    
+    # axes: anything having to do with the x- and y- axes
+    axis.title.x = element_text(face = "bold.italic", color = "#9254D3"),
+    axis.title.y = element_text(family = "Arial", face = "bold", size = 20, hjust = 0.25),
+    axis.text = element_text(face = "italic", size = 15),
+    axis.text.x.bottom = element_text(angle = 180), # note that axis.text options from above are inherited
+    
+    # strips: anything having to do with the facet titles
+    strip.background = element_rect(fill = "#C9E886"),
+    strip.text = element_text(color = "#854EED", family = "Garamond", face = "bold"),
+    
+    # legend: anything having to do with the legend
+    legend.background = element_rect(fill = "#DC86E8"), 
+    legend.key = element_rect(fill = "#C2F774"),
+    legend.direction = "horizontal",
+    legend.position = "top",
+    legend.justification = "left",
+    legend.title = element_text(family = "serif", color = "#B452F9"),
+    legend.text = element_text(family = "mono", face = "italic", color = "#72FFFA")
+    
+  ) +
+  
+  # annotate: big gap
+  annotate(geom = "text", x = 32, y = 20, label = "big gap", color = "#CC107D") +
+  
+  # labs: anything having to do with labels
+  labs(title = "Crabs!",
+       subtitle = "I love crabs",
+       x = "Latitude (low to high)",
+       y = "Size (big to small)",
+       caption = "Do you love crabs?",
+       col = "I love colors!") 
+```
 
+# Ugly plot contest
 
+Now to create an ugly plot of your own!
