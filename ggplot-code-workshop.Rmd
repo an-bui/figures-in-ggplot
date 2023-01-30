@@ -164,7 +164,7 @@ ggplot(data = crab_data, aes(x = latitude, y = size)) +
   labs(title = "Crabs!",
        subtitle = "I love crabs",
        x = "Latitude (low to high)",
-       y = "Size (big to small)",
+       y = "Size (small to big)",
        caption = "Do you love crabs?",
        col = "I love colors!") 
 ```
