@@ -107,6 +107,6 @@ Source: palmerpenguins package
 
 ## Links
 
-- GitHub repo  
-- RMarkdown document  
-- Knitted HTML document  
+- [GitHub repo](https://github.com/an-bui/figures-in-ggplot)  
+- [RMarkdown document](https://github.com/an-bui/figures-in-ggplot/blob/main/ggplot-code-workshop.Rmd)  
+- [Knitted HTML document](https://an-bui.github.io/figures-in-ggplot/ggplot-code-workshop)  
