@@ -1,6 +1,9 @@
 ---
 title: "Figure making in ggplot"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: true
 date: "13 February 2023"
 ---
 
