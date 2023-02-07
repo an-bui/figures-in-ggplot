@@ -11,20 +11,23 @@ editor: source
 
 ## Today
 
--   What does "publication quality" mean to you?\
+-   "Publication quality"\
 -   General rules for data visualization\
 -   Design soapbox\
 -   Resources (not covered, just collected)\
 -   Playing around with code
 
-# What makes a "publication quality" figure?
+# "Publication quality"
+
+## "Publication quality"
 
 ::: incremental
 
 - easily digestible\
+- accessibility: communicates in color or black and white, color-blind friendly\
+- scalable: image resizing without losing resolution\
 
 What do _you_ think makes a publication quality figure?
-
 
 :::
 
