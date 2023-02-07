@@ -6,29 +6,43 @@ format:
     theme: [custom.scss]
     embed-resources: true
     scrollable: true
+    auto-stretch: false
 editor: source
 ---
 
 ## Today
 
--   "Publication quality"\
+-   "Publication quality" definitions and figure sharing\
 -   General rules for data visualization\
 -   Design soapbox\
 -   Resources (not covered, just collected)\
 -   Playing around with code
 
-# "Publication quality"
+# "Publication quality" definitions and figure sharing
 
 ## "Publication quality"
 
 ::: incremental
+-   easily digestible\
+-   accessible: communicates in color or black and white, color-blind friendly\
+-   scalable: image resizing without losing resolution\
+-   stand-alone-able: tells a story behind the author's question, synthesizes an abstract topic\
+:::
 
-- easily digestible\
-- accessibility: communicates in color or black and white, color-blind friendly\
-- scalable: image resizing without losing resolution\
+## Figure sharing! {.smaller}
 
-What do _you_ think makes a publication quality figure?
+![](perez-escobar.png){width="40%" fig-align="center"}
 
+::: {.absolute top="85%" right="4%"}
+::: {style="font-size: 0.4em"}
+The Andes Through Time: Evolution and Distribution
+:::
+:::
+
+::: {.absolute top="87%" right="4%"}
+::: {style="font-size: 0.4em"}
+of Andean Floras (Perez-Escobar et al. 2022)
+:::
 :::
 
 # General rules for data visualization
@@ -122,6 +136,6 @@ Source: palmerpenguins package
 
 ## Links
 
-- [GitHub repo](https://github.com/an-bui/figures-in-ggplot)  
-- [RMarkdown document](https://github.com/an-bui/figures-in-ggplot/blob/main/ggplot-code-workshop.Rmd)  
-- [Knitted HTML document](https://an-bui.github.io/figures-in-ggplot/ggplot-code-workshop)  
+-   [GitHub repo](https://github.com/an-bui/figures-in-ggplot)\
+-   [RMarkdown document](https://github.com/an-bui/figures-in-ggplot/blob/main/ggplot-code-workshop.Rmd)\
+-   [Knitted HTML document](https://an-bui.github.io/figures-in-ggplot/ggplot-code-workshop)
