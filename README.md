@@ -9,7 +9,7 @@ The slides use visualizations from the `palmerpenguins` [package](https://alliso
 - [slides](https://an-bui.github.io/figures-in-ggplot/slides/seminar-slides#/title-slide)
 
 ## Workshop
-To run the code in the workshop, you'll need the packages `tidyverse`, `lterdatasampler`, and `lubridate`.
+To run the code in the workshop, you'll need the packages `tidyverse`, `lterdatasampler`, and `lubridate`. Extra packages (optional but good to have) are `patchwork` and `magick`.
 
 - [workshop knitted version](https://an-bui.github.io/figures-in-ggplot/code/ggplot-code-workshop)
 - [workshop code](https://github.com/an-bui/figures-in-ggplot/blob/main/code/ggplot-code-workshop.Rmd)
