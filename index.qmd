@@ -1,7 +1,0 @@
----
-title: "figures-in-ggplot"
-about:
-  template: broadside
----
-
-This is a collection of some data visualization workshops I have led.
