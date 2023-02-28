@@ -2,4 +2,4 @@
 title: "About"
 ---
 
-About this site
+I have created a couple of data visualization type workshops in the recent past - this is a repository of those materials! Feel free to use with credit!

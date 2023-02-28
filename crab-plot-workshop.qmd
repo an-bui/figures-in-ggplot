@@ -1,0 +1,6 @@
+---
+title: "crab plots"
+editor: source
+---
+
+Testing crab plot workshop page

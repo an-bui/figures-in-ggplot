@@ -9,10 +9,12 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+      - href: crab-plot-workshop.qmd
+        text: Theme customization
 
 format:
   html:
-    theme: cosmo
+    theme: minty
     css: styles.css
     toc: true
 
