@@ -114,6 +114,10 @@ Source: palmerpenguins package
 ## Resources
 
 **General Data Visualization**\
+- [Dataviz Accessibility Resources](https://github.com/dataviza11y/resources)\
+- [Writing Alt Text for Data Visualization](https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81)\
+
+**General Data Visualization**\
 - [Fundamentals of Data Visualization, by Claus O. Wilke](https://serialmentor.com/dataviz/index.html)\
 - [R for Data Science (Ch. 3), by Garrett Grolemund & Hadley Wickham](https://r4ds.had.co.nz/data-visualisation.html)\
 - [A ggplot2 grammar guide, by Gina Reynolds](https://evamaerey.github.io/ggplot2_grammar_guide/about)\
